@@ -1,0 +1,69 @@
+install.packages(c("tidyverse", "pheatmap", "gtsummary"))
+
+library(tidyverse)
+library(pheatmap)
+library(gtsummary)
+
+Expression <- read.csv(file.choose(raw_expression_matrix))
+
+Clinical_Data <- read.csv(file.choose(raw_clinical_metadata))
+
+id_col <- intersect(colnames(Expression), c("Sample_Ref", "Sample.Ref"))
+
+if (length(id_col) == 0) {
+  stop("Could not find a 'Sample_Ref' or 'Sample.Ref' column. Please check your CSV column names.")
+}
+
+Expression_Clean <- Expression %>% 
+  filter(!!sym(id_col) != "PT_12") %>% 
+  rename(Patient_ID = !!sym(id_col)) %>% 
+  mutate(Patient_ID = str_replace(Patient_ID, "_", "-"))
+
+
+Clinical_Data$Age[Clinical_Data$Age == "sixty-seven"] <- 67
+Clinical_Data$Age[Clinical_Data$Age == "fifty-two"] <- 52
+
+Clinical_Data <- Clinical_Data %>% 
+  mutate(Age = as.numeric(Age)) %>% 
+  filter(Patient_ID != "PT-12")
+
+
+Combined <- left_join(Clinical_Data, Expression_Clean, by = "Patient_ID")
+save.image(file = "assignment.RData")
+
+
+long_data <- Combined %>% 
+  pivot_longer(
+    cols = any_of(c("Gene_A", "Gene_B", "Gene_C")), 
+    names_to = "Gene", 
+    values_to = "Expression"
+  )
+
+
+ggplot(long_data, aes(x = Condition, y = Expression, fill = Condition)) + 
+  geom_boxplot(width = 0.6, alpha = 0.8, outlier.shape = NA) + 
+  geom_jitter(aes(color = Condition), alpha = 0.6, width = 0.1, size = 2) + 
+  facet_wrap(~ Gene, scales = "free_y") + 
+  scale_fill_manual(values = c(Normal = "#2E86AB", Tumor = "#D1495B")) + 
+  scale_color_manual(values = c(Normal = "#2E86AB", Tumor = "#D1495B")) + 
+  labs(
+    title = "Expression Comparison of Biomarkers by Condition", 
+    x = "Condition", 
+    y = "Expression Level", 
+    fill = "Condition", 
+    color = "Condition"
+  ) + 
+  theme_bw(base_size = 14) + 
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.9), 
+    strip.text = element_text(face = "bold", size = 13), 
+    axis.title = element_text(face = "bold"), 
+    axis.text = element_text(color = "black"), 
+    legend.position = "top", 
+    panel.grid.minor = element_blank()
+  )
+
+
+ggsave("biomarker_boxplot.png", width = 9, height = 5, dpi = 300)
+save.image(file = "Assignment.RData")
+
