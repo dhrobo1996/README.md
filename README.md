@@ -11,7 +11,8 @@ happens to the specific subset of outlier patients within that same healthy grou
 The vast majority of healthy individuals cluster tightly together into a single unimodal baseline peak ( a low-expression state if the gene is an oncogene, or a stable baseline state).
 A properly calibrated test easily identifies this majority group as "Normal" because they sit exactly where healthy physiology dictates they should.
 When an inexperienced engineer sets a rigid diagnostic threshold based on a flat mean, these healthy outliers face severe consequences:
-The Medical Outcome (Massive False Positives): Clinically, these perfectly healthy individuals are flagged as "Tumor-positive." They are immediately subjected to unnecessary psychological distress, aggressive secondary diagnostic procedures (like invasive biopsies), or toxic exploratory treatments.
+The Medical Outcome (Massive False Positives): Clinically, these perfectly healthy individuals are flagged as "Tumor-positive". 
+They are immediately subjected to unnecessary psychological distress, aggressive secondary diagnostic procedures (like invasive biopsies), or toxic exploratory treatments.
 
 
 #components_3
