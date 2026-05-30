@@ -2,6 +2,18 @@
 
 <img width="689" height="384" alt="Screenshot 2026-05-25 172430" src="https://github.com/user-attachments/assets/712076af-5c92-4b01-9f23-33f84737591e" />
 
+#components_2
+#Questions
+How do the majority of healthy individuals express this gene, and what 
+happens to the specific subset of outlier patients within that same healthy group? 
+
+#Answer
+The vast majority of healthy individuals cluster tightly together into a single unimodal baseline peak ( a low-expression state if the gene is an oncogene, or a stable baseline state).
+A properly calibrated test easily identifies this majority group as "Normal" because they sit exactly where healthy physiology dictates they should.
+When an inexperienced engineer sets a rigid diagnostic threshold based on a flat mean, these healthy outliers face severe consequences:
+The Medical Outcome (Massive False Positives): Clinically, these perfectly healthy individuals are flagged as "Tumor-positive." They are immediately subjected to unnecessary psychological distress, aggressive secondary diagnostic procedures (like invasive biopsies), or toxic exploratory treatments.
+
+
 #components_3
 
 #Questions
