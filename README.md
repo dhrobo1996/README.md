@@ -21,8 +21,7 @@ vs. False Negatives)?
 1. Mathematical Error: The Flat Mean's Failure a uni-modal, normally distributed data set with data clustering.
 When bi-modal variance distributions are present, engineers are entirely misled by relying on a flat mean as for example:
 a. Sub populations: Two different patient sub-types within a same group are indicated by a bi-modal distribution (e.g., tumor patients who are "Low-Expressors" vs. "High-Expressors").
-b. Constructs a Virtual Mean: The computed average will lie exactly in the valley that separates the two peaks. 
-c. This is a value that very few, if any, actual patients truly have neutralizes Differences: If the tumor group is bimodal and the normal group is unimodal,
+b. This is a value that very few, if any, actual patients truly have neutralizes Differences: If the tumor group is bimodal and the normal group is unimodal,
 their mathematical means may end up with the same quntity, hiding a biological difference which is extremely significant.
 
 
