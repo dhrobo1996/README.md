@@ -22,12 +22,13 @@ Expression_Clean <- Expression %>%
 Clinical_Data$Age[Clinical_Data$Age == "sixty-seven"] <- 67
 Clinical_Data$Age[Clinical_Data$Age == "fifty-two"] <- 52
 
-Clinical_Data <- Clinical_Data %>% 
+Clinical_Data_cleaned <- Clinical_Data %>% 
   mutate(Age = as.numeric(Age)) %>% 
   filter(Patient_ID != "PT-12")
-
+  filter(Condition != "" & !is.na(Condition) & Condition != "Unknown")
 
 Combined <- left_join(Clinical_Data, Expression_Clean, by = "Patient_ID")
+Combined <- inner_join(Clinical_Data_cleaned, Expression_Clean, by = "Patient_ID")
 save.image(file = "assignment.RData")
 
 
